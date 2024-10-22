@@ -14,7 +14,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.Subsystems.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
 
 public class RobotContainer {
@@ -42,8 +42,8 @@ public class RobotContainer {
         ));
 
     joystick.button(6).whileTrue(drivetrain.applyRequest(() -> brake));
-    //joystick.b().whileTrue(drivetrain
-        //.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.button(4).whileTrue(drivetrain
+        .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getRawAxis(1), -joystick.getRawAxis(3)))));
 
     // reset the field-centric heading on left bumper press
     joystick.button(2).onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
